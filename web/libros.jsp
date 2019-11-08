@@ -56,6 +56,7 @@
       %>
     </div>
     </div>
+<div class="clearfix"></div>
     <jsp:include page="layout/footeer.jsp"></jsp:include>
 </body>
 </html>
