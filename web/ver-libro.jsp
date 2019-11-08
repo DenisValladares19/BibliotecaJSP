@@ -52,16 +52,16 @@
                         <h5><strong>Fecha de Lanzamiento: </strong><%= l.getAnioLanzamiento() %></h5>
                         <h5><strong>Editorial: </strong><%= l.getEditorial().getNombre() %></h5>
                         <h5><strong>Edición: </strong><%= l.getEdicion() %></h5>
-                        
+                        <input type="hidden" id="idLibro" value="<%= request.getParameter("l") %>"/>
                         <div class="row">
                             <div class="col-md-3">
-                                <input type="number" class="form-control" min="1"/>
+                                <input type="number" class="form-control" id="cant" min="1"/>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn btn-success btn-small "><i class="fas fa-cart-plus"></i> Agregar</button>
+                                <button class="btn btn-success btn-small " id="agregar"><i class="fas fa-cart-plus"></i> Agregar</button>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn btn-warning btn-small" style="color:white;"><i class="fas fa-id-badge"></i>  Prestar</button>                               
+                                <button class="btn btn-warning btn-small" style="color:white;" id="prestar"><i class="fas fa-id-badge"></i>  Prestar</button>                               
                             </div>
                         </div>
                         <div class="row"><p> </p></div>
@@ -72,7 +72,7 @@
                         <p align="justify" ><%= l.getSinopsis() %></p>
                     </div>
                     <div class="col-md-4">
-                        <img src="assets/img/libro/<%= l.getImagen() %>" alt="<%= l.getNombre()%>" class="image-wrapp" />
+                        <img src="assets/img/libro/<%= l.getImagen() %>" alt="<%= l.getNombre()%>" class="img-fluid" />
                     </div>
                 </div>
                 <%
@@ -94,3 +94,27 @@
 <%
     }
 %>
+<script>
+    $(document).ready(function() {
+       $("#agregar").click(function(){
+           if($("#cant").val()==""){
+               const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                  })
+
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'debe seleccionar una cantidad'
+                  })
+           }else{
+               var idLibro = $("#idLibro").val();
+           var cant = $("#cant").val();
+          alert("diste click en id "+idLibro+"cantidad "+cant); 
+           }
+            
+       });
+    });
+</script>
