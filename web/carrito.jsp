@@ -4,6 +4,8 @@
     Author     : SERVER
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="com.modelo.Carrito"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,12 +37,19 @@
         </thead>
         <tbody>
             <%
-                ArrayList ls = (ArrayList)ses.getAttribute("carrito");
+                List<Carrito> ls = (ArrayList)ses.getAttribute("carrito");
                 
-                   for(Object l:ls){ 
+                   for(Carrito c:ls){ 
                 %>    
                 <tr>
-                    <td><%= ls.get(0) %></td>
+                    <td><%=c.getIdLibro() %></td>
+                    <td><%=c.getNombre() %></td>
+                    <td><%=c.getEditorial() %></td>
+                    <td><%=c.getAutor() %></td>
+                    <td><%=c.getPrecio() %></td>
+                    <td><input type="number" class="form-control cant" value="<%= c.getCantidad() %>"/></td>
+                    <td><%=c.getSubtotal() %></td>
+                    <td><input type="button" class="btn btn-danger btn-small eliminar" value="Eliminar" /></td>
                 </tr>
                  <%   
                } 
