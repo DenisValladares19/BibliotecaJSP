@@ -9,9 +9,11 @@ $(document).ready(function() {
            }else{
                 var idLibro = $("#idLibro").val();
                 var cant = $("#cant").val();
+                var accion = "agregar";
                 $.post("carro",{
                     idLibro,
-                    cant
+                    cant,
+                    accion
                 },function(res){
                     const Toast = Swal.mixin({
                         toast: true,
