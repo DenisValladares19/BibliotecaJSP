@@ -16,4 +16,73 @@ public class Carrito {
     private int cantidad;
     private double precio;
     private double subtotal;
+
+    public Carrito() {
+    }
+
+    public Carrito(int idLibro, String nombre, String editorial, String autor, int cantidad, double precio, double subtotal) {
+        this.idLibro = idLibro;
+        this.nombre = nombre;
+        this.editorial = editorial;
+        this.autor = autor;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.subtotal = subtotal;
+    }
+
+    public int getIdLibro() {
+        return idLibro;
+    }
+
+    public void setIdLibro(int idLibro) {
+        this.idLibro = idLibro;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
 }
