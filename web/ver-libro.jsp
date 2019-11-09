@@ -24,6 +24,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <jsp:include page="layout/css1.jsp"></jsp:include>
+  <script src="Recursos/js/ver-libro.js" type="text/javascript"></script>   
   <%
       DaoLibro daoL = new DaoLibro();
   %>
@@ -94,27 +95,4 @@
 <%
     }
 %>
-<script>
-    $(document).ready(function() {
-       $("#agregar").click(function(){
-           if($("#cant").val()==""){
-               const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
-                  })
 
-                  Toast.fire({
-                    icon: 'error',
-                    title: 'debe seleccionar una cantidad'
-                  })
-           }else{
-               var idLibro = $("#idLibro").val();
-           var cant = $("#cant").val();
-          alert("diste click en id "+idLibro+"cantidad "+cant); 
-           }
-            
-       });
-    });
-</script>
