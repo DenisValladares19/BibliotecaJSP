@@ -69,6 +69,7 @@ public class Carro extends HttpServlet {
                 for (Carrito c : list) {
                     if (c.getIdLibro() != idLibro) {
                         try {
+                            ls = new ArrayList();
                             ls = dao.verLibro(idLibro);
                             for (Libro l : ls) {
                                 Carrito ca = new Carrito();
@@ -81,14 +82,15 @@ public class Carro extends HttpServlet {
                                 ca.setSubtotal(cantidad * l.getPrecio());
                                 list.add(ca);
                                 ses.setAttribute("carrito", list);
-                            out.print("Se agregó otro exitosamente al carrito");
+                                out.print("Se agregó otro exitosamente al carrito");
                             }
                             
                         } catch (Exception e) {
                             out.print("Error: " + e.getMessage());
                         }
                     } else {
-                        out.print("Es el mismo id");
+                        c.setCantidad(c.getCantidad()+cantidad);
+                        out.print("Se agregó de nuevo el libro");
                     }
                 }
             }
