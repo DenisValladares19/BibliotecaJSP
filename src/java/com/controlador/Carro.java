@@ -1,12 +1,17 @@
 
 package com.controlador;
 
+import com.dao.DaoLibro;
+import com.modelo.Libro;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,7 +34,14 @@ public class Carro extends HttpServlet {
         PrintWriter out = response.getWriter();
         int idLibro = Integer.parseInt(request.getParameter("idLibro"));
         int cantidad = Integer.parseInt(request.getParameter("cant"));
-        out.print("Desde carrito valor de id: "+idLibro+" cantidad: "+cantidad);
+        String accion = request.getParameter("accion");
+        HttpSession ses = request.getSession();
+        DaoLibro dao = new DaoLibro();
+        List<Libro> ls = new ArrayList();
+        
+        if(ses.getAttribute("carrito")==null){
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
