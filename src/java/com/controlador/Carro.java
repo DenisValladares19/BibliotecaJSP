@@ -39,40 +39,64 @@ public class Carro extends HttpServlet {
         PrintWriter out = response.getWriter();
         int idLibro = Integer.parseInt(request.getParameter("idLibro"));
         int cantidad = Integer.parseInt(request.getParameter("cant"));
+        String accion = request.getParameter("accion");
         HttpSession ses = request.getSession();
         DaoLibro dao = new DaoLibro();
-        List<Libro> ls = new ArrayList<Libro>();
-        ArrayList arreglo = new ArrayList();
-        if(ses.getAttribute("carrito")==null){
-                try {
-                   ls = dao.verLibro(idLibro);
-                   for(Libro l:ls){
-                       Carrito c = new Carrito();
-                       c.setIdLibro(idLibro);
-                       c.setAutor(l.getAutor().getNombre());
-                       c.setEditorial(l.getEditorial().getNombre());
-                       c.setPrecio(l.getPrecio());
-                       c.setCantidad(cantidad);
-                       c.setSubtotal(cantidad*l.getPrecio());
-                       arreglo.add(c);
-                   }
-                   ses.setAttribute("carrito", arreglo);
-                   out.print("Se agregó exitosamente al carrito");
-                } catch (Exception e) {
-                    out.print("Error: "+e.getMessage());
-                }
-            }else{
-                   ArrayList list = (ArrayList)ses.getAttribute("carrito");
-                   for(int i = 0;i<list.size();i++){
-                       if(list.get(0).equals(idLibro)){
-                           out.print("es el mismo id");
-                       } else {
-                           out.print("es otro id");
+        List<Libro> ls;
+        List<Carrito> arreglo = new ArrayList();
+        if(accion.equals("agregar")){
+            if(ses.getAttribute("carrito")==null){
+                    try {
+                       ls = dao.verLibro(idLibro);
+                       for(Libro l:ls){
+                           Carrito c = new Carrito();
+                           c.setIdLibro(idLibro);
+                           c.setNombre(l.getNombre());
+                           c.setAutor(l.getAutor().getNombre());
+                           c.setEditorial(l.getEditorial().getNombre());
+                           c.setPrecio(l.getPrecio());
+                           c.setCantidad(cantidad);
+                           c.setSubtotal(cantidad*l.getPrecio());
+                           arreglo.add(c);
                        }
-                   }
-                
+                       ses.setAttribute("carrito", arreglo);
+                       out.print("Se agregó exitosamente al carrito");
+                    } catch (Exception e) {
+                        out.print("Error: "+e.getMessage());
+                    }
+               } else {
+                List<Carrito> list = (ArrayList) ses.getAttribute("carrito");
+                for (Carrito c : list) {
+                    if (c.getIdLibro() != idLibro) {
+                        try {
+                            ls = dao.verLibro(idLibro);
+                            for (Libro l : ls) {
+                                Carrito ca = new Carrito();
+                                ca.setIdLibro(idLibro);
+                                ca.setNombre(l.getNombre());
+                                ca.setAutor(l.getAutor().getNombre());
+                                ca.setEditorial(l.getEditorial().getNombre());
+                                ca.setPrecio(l.getPrecio());
+                                ca.setCantidad(cantidad);
+                                ca.setSubtotal(cantidad * l.getPrecio());
+                                list.add(ca);
+                                ses.setAttribute("carrito", list);
+                            out.print("Se agregó otro exitosamente al carrito");
+                            }
+                            
+                        } catch (Exception e) {
+                            out.print("Error: " + e.getMessage());
+                        }
+                    } else {
+                        out.print("Es el mismo id");
+                    }
+                }
             }
+
+        }
+
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
