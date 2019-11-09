@@ -15,7 +15,7 @@ $(document).ready(function() {
                     cant,
                     accion
                 },function(res){
-                    console.log(res);
+                    alert(res);
                 });
            }
             
