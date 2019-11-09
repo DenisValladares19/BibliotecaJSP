@@ -9,9 +9,28 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Biblioteca Online</title>
+        <jsp:include page="layout/css1.jsp"></jsp:include>
     </head>
     <body>
-        <h1>Hello World!</h1>
+    <jsp:include page="layout/menu_pagep.jsp"></jsp:include>
+    <br><br><br>
+    <%
+        HttpSession ses = request.getSession();
+        if(ses.getAttribute("carrito")==null){
+          %>  
+            
+    <center><h3>Carrito de Compras</h3></center>
+            
+            <%
+        }else{
+           %> 
+           <center><h3>El Carrito esta vacio</h3></center>   
+            <%
+        }
+    %>
+    
+    
+    <jsp:include page="layout/footeer.jsp"></jsp:include>
     </body>
 </html>
