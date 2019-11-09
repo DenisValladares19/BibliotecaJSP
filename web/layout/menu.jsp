@@ -45,7 +45,7 @@
                     %>
                 
                 
-                 <li ><a  href="carrito.jsp"><i class="icon-shopping-cart icon-1x"></i><span class="badge badge-info">4</span></i></a></li>
+                 <li ><a  href="carrito.jsp" class="external"> <i class="icon-shopping-cart icon-1x"></i><span class="badge badge-info">4</span></i></a></li>
             <%
         
              if(ses.getAttribute("sis")!=null)  //Esta sesion trae el ID del Usuario logeado
