@@ -40,7 +40,7 @@ public class Carro extends HttpServlet {
         HttpSession ses = request.getSession();
         DaoLibro dao = new DaoLibro();
         HashMap<String,Object> arreglo = new HashMap<>();
-        List<Libro> ls = new ArrayList();
+        List<Libro> ls = new ArrayList<Libro>();
         
             if(ses.getAttribute("carrito")==null){
                 try {
