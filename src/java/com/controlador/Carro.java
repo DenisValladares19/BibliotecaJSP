@@ -6,7 +6,9 @@ import com.modelo.Libro;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,11 +39,43 @@ public class Carro extends HttpServlet {
         String accion = request.getParameter("accion");
         HttpSession ses = request.getSession();
         DaoLibro dao = new DaoLibro();
+        HashMap<String,Object> arreglo = new HashMap<>();
         List<Libro> ls = new ArrayList();
         
-        if(ses.getAttribute("carrito")==null){
+            if(ses.getAttribute("carrito")==null){
+                try {
+                   ls = dao.verLibro(idLibro);
+                   for(Libro l:ls){
+                       arreglo.put("id",idLibro);
+                       arreglo.put("nombre",l.getNombre());
+                       arreglo.put("editorial",l.getEditorial().getNombre());
+                       arreglo.put("autor",l.getAutor().getNombre());
+                       arreglo.put("imagen",l.getImagen());
+                       arreglo.put("precio",l.getPrecio());
+                       arreglo.put("cantidad",cantidad);
+                       arreglo.put("subtotal",cantidad*l.getPrecio());
+                   }
+                   ses.setAttribute("carrito", arreglo);
+                   out.print("Se agregó exitosamente al carrito");
+                } catch (Exception e) {
+                    out.print("Error: "+e.getMessage());
+                }
+            }else{
+                HashMap<String,Object> arregloSes = (HashMap)ses.getAttribute("carrito");
+                 for(Map.Entry entry: arreglo.entrySet()){
+                   String key = (String)entry.getKey();
+                   Object value = entry.getValue();
+                   if(key.equals("id")&& value.equals(idLibro)){
+                       out.print("Es el mismo del carrito");
+                   }else{
+                       out.print("No es el mismo del carrito");
+                   }
+                   
+                   
+                 }
+            }
             
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
