@@ -53,6 +53,7 @@
                         <h5><strong>Fecha de Lanzamiento: </strong><%= l.getAnioLanzamiento() %></h5>
                         <h5><strong>Editorial: </strong><%= l.getEditorial().getNombre() %></h5>
                         <h5><strong>Edición: </strong><%= l.getEdicion() %></h5>
+                        <h5><strong>Precio: </strong>$ <%= l.getPrecio() %></h5>
                         <input type="hidden" id="idLibro" value="<%= request.getParameter("l") %>"/>
                         <div class="row">
                             <div class="col-md-3">
