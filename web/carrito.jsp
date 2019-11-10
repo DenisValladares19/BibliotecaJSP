@@ -49,7 +49,7 @@
                     <td><%=c.getEditorial() %></td>
                     <td><%=c.getAutor() %></td>
                     <td><%=c.getPrecio() %></td>
-                    <td><input type="number" class="form-control cant" value="<%= c.getCantidad() %>"/></td>
+                    <td><input type="number" class="form-control cant col-md-4" value="<%= c.getCantidad() %>"/></td>
                     <td><%=c.getSubtotal() %></td>
                     <td><input type="button" class="btn btn-danger btn-small eliminar" value="Eliminar" id="<%=c.getIdLibro() %>"/></td>
                 </tr>
