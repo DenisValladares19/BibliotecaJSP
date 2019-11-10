@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.controlador;
 
 import com.dao.DaoLibro;
@@ -66,14 +62,23 @@ public class Carro extends HttpServlet {
                     }
                } else {
                 List<Carrito> list = (ArrayList) ses.getAttribute("carrito");
-                for (Carrito c : list) {
-                    if (c.getIdLibro() != idLibro) {
-                        try {
+                boolean band = false;
+                for (Carrito c : list){
+                    if (idLibro!=c.getIdLibro()) {
+                        band=true;
+                    } else {
+                        band=false;
+                        c.setCantidad(c.getCantidad()+cantidad);
+                        out.print("Se agregó de nuevo el libro");
+                    }
+                }
+                if(band){
+                    try {
                             ls = new ArrayList();
                             ls = dao.verLibro(idLibro);
                             for (Libro l : ls) {
                                 Carrito ca = new Carrito();
-                                ca.setIdLibro(idLibro);
+                                ca.setIdLibro(l.getIdLibro());
                                 ca.setNombre(l.getNombre());
                                 ca.setAutor(l.getAutor().getNombre());
                                 ca.setEditorial(l.getEditorial().getNombre());
@@ -81,17 +86,13 @@ public class Carro extends HttpServlet {
                                 ca.setCantidad(cantidad);
                                 ca.setSubtotal(cantidad * l.getPrecio());
                                 list.add(ca);
-                                ses.setAttribute("carrito", list);
                                 out.print("Se agregó otro exitosamente al carrito");
+                                ses.setAttribute("carrito", list);
                             }
                             
                         } catch (Exception e) {
                             out.print("Error: " + e.getMessage());
                         }
-                    } else {
-                        c.setCantidad(c.getCantidad()+cantidad);
-                        out.print("Se agregó de nuevo el libro");
-                    }
                 }
             }
 
