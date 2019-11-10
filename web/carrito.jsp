@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Biblioteca Online</title>
         <jsp:include page="layout/css1.jsp"></jsp:include>
+        <script src="Recursos/js/carrito.js" type="text/javascript"></script>
     </head>
     <body>
     <jsp:include page="layout/menu_pagep.jsp"></jsp:include>
@@ -26,7 +27,7 @@
     <center><h3>Carrito de Compras</h3></center>
     <table class="table table-borderless">
         <thead class="table-dark">
-            <th>Codigo</th>
+            <th>#</th>
             <th>Nombre</th>
             <th>Editorial</th>
             <th>Autor</th>
@@ -38,20 +39,22 @@
         <tbody>
             <%
                 List<Carrito> ls = (ArrayList)ses.getAttribute("carrito");
-                
+                int x = 0;
                    for(Carrito c:ls){ 
+                   
                 %>    
                 <tr>
-                    <td><%=c.getIdLibro() %></td>
+                    <td><%=(x+1)%></td>
                     <td><%=c.getNombre() %></td>
                     <td><%=c.getEditorial() %></td>
                     <td><%=c.getAutor() %></td>
                     <td><%=c.getPrecio() %></td>
                     <td><input type="number" class="form-control cant" value="<%= c.getCantidad() %>"/></td>
                     <td><%=c.getSubtotal() %></td>
-                    <td><input type="button" class="btn btn-danger btn-small eliminar" value="Eliminar" /></td>
+                    <td><input type="button" class="btn btn-danger btn-small eliminar" value="Eliminar" id="<%=c.getIdLibro() %>"/></td>
                 </tr>
-                 <%   
+                 <% 
+                     x++;
                } 
             %>
         </tbody>
