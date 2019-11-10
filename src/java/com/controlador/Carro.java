@@ -34,13 +34,13 @@ public class Carro extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         int idLibro = Integer.parseInt(request.getParameter("idLibro"));
-        int cantidad = Integer.parseInt(request.getParameter("cant"));
         String accion = request.getParameter("accion");
         HttpSession ses = request.getSession();
         DaoLibro dao = new DaoLibro();
         List<Libro> ls;
         List<Carrito> arreglo = new ArrayList();
         if(accion.equals("agregar")){
+            int cantidad = Integer.parseInt(request.getParameter("cant"));
             if(ses.getAttribute("carrito")==null){
                     try {
                        ls = dao.verLibro(idLibro);
@@ -97,6 +97,19 @@ public class Carro extends HttpServlet {
             }
 
         }
+        if(accion.equals("eliminar")){
+            
+                List<Carrito> list = (ArrayList) ses.getAttribute("carrito");
+                for (Carrito c : list){
+                    if (idLibro!=c.getIdLibro()) {
+                        list.remove(c);
+                        ses.setAttribute("carrito", list);
+                        out.print("Se elimininó satisfactoriamente");
+                    } 
+                }
+            
+        }
+        
 
     }
 
