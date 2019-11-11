@@ -1,3 +1,5 @@
+<%@page import="com.modelo.Carrito"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.modelo.Club"%>
 <%@page import="com.modelo.Oferta"%>
@@ -43,10 +45,28 @@
                     <% 
                     }
                     %>
+                <%
+        if(ses.getAttribute("carrito")!=null){
+            List<Carrito> ls = (ArrayList)ses.getAttribute("carrito");
+            if(!ls.isEmpty()){
+                int x = 0;
+                   for(Carrito c:ls){
+                       x++;
+                   }
+    %>
                 
-                
-                 <li ><a  href="carrito.jsp" class="external"> <i class="icon-shopping-cart icon-1x"></i><span class="badge badge-info">4</span></i></a></li>
+                 <li ><a  href="carrito.jsp" class="external"> <i class="icon-shopping-cart icon-1x"></i><span class="badge badge-info"><%=x%></span></i></a></li>
             <%
+                }else{
+                %>
+                 <li ><a  href="carrito.jsp" class="external"> <i class="icon-shopping-cart icon-1x"></i><span class="badge badge-info">0</span></i></a></li>
+                <%
+                }
+        }else{
+        %>
+                 <li ><a  href="carrito.jsp" class="external"> <i class="icon-shopping-cart icon-1x"></i><span class="badge badge-info">0</span></i></a></li>
+        <%
+    }
         
              if(ses.getAttribute("sis")!=null)  //Esta sesion trae el ID del Usuario logeado
         {
