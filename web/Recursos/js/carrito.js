@@ -17,10 +17,29 @@ $(document).ready(function(){
                 icon: 'success',
                 title: res
             });
-            $(this).closest('tr').remove();
+            
         });
-        
-                
+        $(this).closest('tr').remove(); 
+        location.reload();
+    });
+    
+    $(".cant").change(function(){
+       var idLibro = $(this).attr("data-id");
+       var cant = $(this).val();
+       var accion = "update";
+       
+       if(cant<=0){
+          $(this).val(1);
+       }else{
+           $.post("carro",{
+               idLibro,
+               cant,
+               accion
+            },function(res){
+                location.reload();
+            });
+       }
+       
     });
 });
 
