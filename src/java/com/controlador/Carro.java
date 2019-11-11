@@ -44,7 +44,8 @@ public class Carro extends HttpServlet {
         List<Carrito> arreglo = new ArrayList();
         if(accion.equals("agregar")){
             int cantidad = Integer.parseInt(request.getParameter("cant"));
-            if(ses.getAttribute("carrito")==null){
+            List<Carrito> car = (ArrayList)ses.getAttribute("carrito");
+            if(car==null || car.isEmpty()){
                     try {
                        ls = dao.verLibro(idLibro);
                        for(Libro l:ls){
@@ -77,9 +78,9 @@ public class Carro extends HttpServlet {
                 }
                 if(band){
                     try {
-                            ls = new ArrayList();
-                            ls = dao.verLibro(idLibro);
-                            for (Libro l : ls) {
+                            List<Libro> lst = new ArrayList();
+                            lst = dao.verLibro(idLibro);
+                            for (Libro l : lst) {
                                 Carrito ca = new Carrito();
                                 ca.setIdLibro(l.getIdLibro());
                                 ca.setNombre(l.getNombre());
@@ -100,16 +101,29 @@ public class Carro extends HttpServlet {
             }
 
         }
-        if(accion.equals("eliminar")){
-            
+        if(accion.equals("eliminar")){ 
+                int idLib = Integer.parseInt(request.getParameter("idLibro"));
                 List<Carrito> list = (ArrayList) ses.getAttribute("carrito");
+                boolean band = false;
+                Carrito ca = new Carrito();
                 for (Carrito c : list){
-                    if (idLibro!=c.getIdLibro()) {
+                    if (idLib!=c.getIdLibro()) {
+                        //band=true;
+                        //ca = c;
                         list.remove(c);
+                        
+                    } else{
+                       // band = false;
+                       // ca = new Carrito();
+                    }
+                    if(band){
+                        /*list.remove(ca);
                         ses.setAttribute("carrito", list);
-                        out.print("Se elimininó satisfactoriamente");
-                    } 
+                        out.print("Se elimininó satisfactoriamente");*/
+                    }
                 }
+                ses.setAttribute("carrito", list);
+                out.print("Se elimininó satisfactoriamente");
             
         }
         
