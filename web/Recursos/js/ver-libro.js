@@ -20,16 +20,16 @@ $(document).ready(function() {
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                       });
 
                       Toast.fire({
                         icon: 'success',
                         title: res
                       });  
+                      location.reload();
                 });
                 $("#cant").val(1);
-                location.reload();
            }
             
        });
