@@ -41,6 +41,10 @@ $(document).ready(function(){
        }
        
     });
+    
+    $(".cant").keydown(function(){
+        return false;
+    })
 });
 
 
