@@ -28,6 +28,10 @@
         <servlet-name>ProcesarNotificacion</servlet-name>
         <servlet-class>com.controlador.ProcesarNotificacion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Prestamo</servlet-name>
+        <servlet-class>com.controlador.Prestamo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ProcesarNotificacion</servlet-name>
         <url-pattern>/procesarNotificacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prestamo</servlet-name>
+        <url-pattern>/prestamo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

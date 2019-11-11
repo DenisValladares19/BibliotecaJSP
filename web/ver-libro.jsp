@@ -2,7 +2,7 @@
 <%@page import="com.modelo.Libro"%>
 <%
     if(request.getParameter("l")!=null){
-        
+    int idL=Integer.parseInt(request.getParameter("l").toString());
     
 %>
 <%-- 
@@ -13,6 +13,7 @@
 <%@page import="com.dao.DaoLibro"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" %>
 <!DOCTYPE html>
 <!doctype html>
 <html lang="en">
@@ -27,6 +28,7 @@
   <script src="Recursos/js/ver-libro.js" type="text/javascript"></script>   
   <%
       DaoLibro daoL = new DaoLibro();
+      HttpSession ses=request.getSession();
   %>
 </head>
 
@@ -62,9 +64,20 @@
                             <div class="col-md-4">
                                 <button class="btn btn-success btn-small " id="agregar"><i class="fas fa-cart-plus"></i> Agregar</button>
                             </div>
+                            
+                            <%
+                                if(ses.getAttribute("sis")!=null)  //Esta sesion trae el ID del Usuario logeado
+                                  {
+                               int id=Integer.parseInt(ses.getAttribute("sis").toString()); 
+
+                              %>
                             <div class="col-md-4">
-                                <button class="btn btn-warning btn-small" style="color:white;" id="prestar"><i class="fas fa-id-badge"></i>  Prestar</button>                               
+                                <a href="prestamo?u=<%= id %>&l=<%= idL %>" class="btn btn-warning btn-small" style="color:white;" id="prestar"><i class="fas fa-id-badge"></i>  Prestar</a>                               
                             </div>
+                            
+                             <%
+                                }
+                            %>
                         </div>
                         <div class="row"><p> </p></div>
                         <div class="row">
