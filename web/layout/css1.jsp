@@ -16,6 +16,6 @@
 <link href="Recursos/bootstrap/js/bootstrap.js" rel="stylesheet" type="text/css"/>
 <link href="Recursos/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
 
-<script src="Recursos/sweetalert2/sweetalert2.min.js" type="text/javascript"></script>
 <script src="Recursos/jquery.js" type="text/javascript"></script>
+<script src="Recursos/sweetalert2/sweetalert2.min.js" type="text/javascript"></script>
 <script src="Recursos/bootstrap/js/bootstrap.js" type="text/javascript"></script>
