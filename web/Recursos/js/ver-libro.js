@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $("#cant").val(1);
        $("#agregar").click(function(){
            if($("#cant").val()===""){
                Swal.fire(
@@ -27,6 +28,7 @@ $(document).ready(function() {
                         title: res
                       });  
                 });
+                $("#cant").val(1);
            }
             
        });
