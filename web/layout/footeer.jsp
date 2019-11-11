@@ -1,5 +1,6 @@
-<br><br>
-<div class="footer-copyright font-small pt-1"  style="background-color: #2F2F2F;">
+<br><br><br><br>
+<div class="row">
+    <div class="col-md-12 col-lg-12 position-relative" style="background-color: #2F2F2F; width: 100%; bottom: 0;">
     <br><br>
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">
@@ -12,4 +13,4 @@
 <br>
 </div>
 <!-- Footer -->
-
+</div>
