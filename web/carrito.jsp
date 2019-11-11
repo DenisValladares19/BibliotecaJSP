@@ -4,6 +4,7 @@
     Author     : SERVER
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.modelo.Carrito"%>
 <%@page import="java.util.ArrayList"%>
@@ -22,11 +23,13 @@
     <%
         HttpSession ses = request.getSession();
         if(ses.getAttribute("carrito")!=null){
+            List<Carrito> ls = (ArrayList)ses.getAttribute("carrito");
+            if(!ls.isEmpty()){
           %>  
             
     <center><h3>Carrito de Compras</h3></center>
     <table class="table table-borderless">
-        <thead class="table-dark">
+        <thead class="table-dark text-center">
             <th>#</th>
             <th>Nombre</th>
             <th>Editorial</th>
@@ -36,30 +39,42 @@
             <th>Subtotal</th>
             <th>Acción</th>
         </thead>
-        <tbody>
+        <tbody >
             <%
-                List<Carrito> ls = (ArrayList)ses.getAttribute("carrito");
+                
                 int x = 0;
+                DecimalFormat df = new DecimalFormat("######.##");
+                double total = 0;
                    for(Carrito c:ls){ 
-                   
+                   total+= c.getSubtotal();
                 %>    
                 <tr>
                     <td><%=(x+1)%></td>
                     <td><%=c.getNombre() %></td>
                     <td><%=c.getEditorial() %></td>
                     <td><%=c.getAutor() %></td>
-                    <td><%=c.getPrecio() %></td>
-                    <td><input type="number" class="form-control cant col-md-4" value="<%= c.getCantidad() %>"/></td>
-                    <td><%=c.getSubtotal() %></td>
-                    <td><input type="button" class="btn btn-danger btn-small eliminar" value="Eliminar" id="<%=c.getIdLibro() %>"/></td>
+                    <td><%=df.format(c.getPrecio()) %></td>
+                    <td><input type="number" class="form-control cant col-md-4 ml-auto mr-auto" value="<%= c.getCantidad() %>"/></td>
+                    <td><%=df.format(c.getSubtotal()) %></td>
+                    <td><input type="button" class="btn btn-danger btn-small eliminar " value="Eliminar" id="<%=c.getIdLibro() %>"/></td>
                 </tr>
                  <% 
                      x++;
                } 
             %>
         </tbody>
+        <tfoot class="table-dark text-right">
+            <tr>
+                <td colspan="8"><h4><strong>Total: </strong><%= df.format(total) %></h4></td>
+            </tr>
+        </tfoot>
     </table>
             <%
+                }else{
+                %> 
+                <center><h3>El Carrito esta vacio</h3></center>   
+                 <%
+                }
         }else{
            %> 
            <center><h3>El Carrito esta vacio</h3></center>   
