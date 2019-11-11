@@ -13,13 +13,14 @@ $(document).ready(function(){
                 showConfirmButton: false,
                 timer: 3000
             });
-
             Toast.fire({
                 icon: 'success',
                 title: res
             });
+            $(this).closest('tr').remove();
         });
-        //$(this).closest('tr').remove();
+        
+                
     });
 });
 
