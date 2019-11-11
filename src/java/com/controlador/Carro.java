@@ -15,8 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author SERVER
+ * Nombre de la clase: Carro
+ * Fecha: 09-11-2019
+ * Version: 1.0
+ * Copyright: Denis Valladares
+ * @author Denis Valladares
  */
 public class Carro extends HttpServlet {
 
