@@ -1,3 +1,5 @@
+<%@page import="com.modelo.Carrito"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.modelo.Notificacion"%>
 <%@page import="com.dao.DaoNotificacion"%>
@@ -37,10 +39,29 @@
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="libroGenero.jsp" style="color: white">Genero de Libros</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info">4</span></i></a>
-          </li>
-                
+              <%
+        if(ses.getAttribute("carrito")!=null){
+            List<Carrito> ls = (ArrayList)ses.getAttribute("carrito");
+            if(!ls.isEmpty()){
+                int x = 0;
+                   for(Carrito c:ls){
+                       x++;
+                   }
+        %>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info"><%=x%></span></i></a>
+          <%
+                }else{
+                %>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info">0</span></i></a>
+              <%
+                }
+        }else{
+        %>
+          
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info">0</span></i></a>
+          </li>   
                 <%
+                    }
                  if(ses.getAttribute("sis")!=null)  //Esta sesion trae el ID del Usuario logeado
                 {
                     int id=Integer.parseInt(ses.getAttribute("sis").toString()); 
