@@ -29,6 +29,7 @@ $(document).ready(function() {
                       });  
                 });
                 $("#cant").val(1);
+                location.reload();
            }
             
        });
