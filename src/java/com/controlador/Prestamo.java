@@ -46,6 +46,7 @@ public class Prestamo extends HttpServlet {
                     }
                     else
                     {
+                        //Solo para hacer el Commit
                        // Date fecha=new Date();
                         SimpleDateFormat formato=new SimpleDateFormat("dd/MM/YY");
                         
