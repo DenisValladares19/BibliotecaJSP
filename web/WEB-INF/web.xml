@@ -32,6 +32,10 @@
         <servlet-name>Prestamo</servlet-name>
         <servlet-class>com.controlador.Prestamo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Carro</servlet-name>
+        <servlet-class>com.controlador.Carro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>Prestamo</servlet-name>
         <url-pattern>/prestamo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Carro</servlet-name>
+        <url-pattern>/carro</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
