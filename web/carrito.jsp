@@ -54,7 +54,7 @@
                     <td><%=c.getEditorial() %></td>
                     <td><%=c.getAutor() %></td>
                     <td>$<%=df.format(c.getPrecio()) %></td>
-                    <td><input type="number" class="form-control cant col-md-4 ml-auto mr-auto cant" value="<%= c.getCantidad() %>" data-id="<%=c.getIdLibro() %>" data-cant="<%=c.getCantidad() %>"/></td>
+                    <td><input type="number" class="form-control cant col-md-4 ml-auto mr-auto cant"  value="<%= c.getCantidad() %>" data-id="<%=c.getIdLibro() %>" data-cant="<%=c.getCantidad() %>"/></td>
                     <td>$<%=df.format(c.getSubtotal()) %></td>
                     <td><input type="button" class="btn btn-danger btn-small eliminar " value="Eliminar" id="<%=c.getIdLibro() %>"/></td>
                 </tr>
