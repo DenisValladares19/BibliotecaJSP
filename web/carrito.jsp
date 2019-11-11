@@ -25,7 +25,7 @@
         if(ses.getAttribute("carrito")!=null){
             List<Carrito> ls = (ArrayList)ses.getAttribute("carrito");
             if(!ls.isEmpty()){
-          %>  
+    %>  
             
     <center><h3>Carrito de Compras</h3></center>
     <table class="table table-borderless">
