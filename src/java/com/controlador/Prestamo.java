@@ -5,8 +5,12 @@
  */
 package com.controlador;
 
+import com.dao.DaoPrestamo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +27,36 @@ public class Prestamo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
+        RequestDispatcher rd=null;
+        DaoPrestamo dao=new DaoPrestamo();
+        
+        int idLib=Integer.parseInt(request.getParameter("l").toString());
+        int idClie=Integer.parseInt(request.getParameter("u").toString());
+        
+        try 
+        {
+            if(request.getParameter("u")!=null)
+            {
+                if(request.getParameter("l")!=null)
+                {
+                    if(dao.validar(idClie, idLib))
+                    {
+                        request.setAttribute("info","Ya eienes una Solicitud del Prestamo Vigente");
+                        request.setAttribute("type","error");
+                    }
+                    else
+                    {
+                       // Date fecha=new Date();
+                        SimpleDateFormat formato=new SimpleDateFormat("dd/MM/YY");
+                        
+                        dao.insertarSoliPrestamo(idClie, idLib);
+                    }
+                }
+            }
+        } 
+        catch (Exception e) 
+        {
             
-        } catch (Exception e) {
         }
     }
 
