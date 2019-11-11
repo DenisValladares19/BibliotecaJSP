@@ -104,27 +104,42 @@ public class Carro extends HttpServlet {
         if(accion.equals("eliminar")){ 
                 int idLib = Integer.parseInt(request.getParameter("idLibro"));
                 List<Carrito> list = (ArrayList) ses.getAttribute("carrito");
+                List<Carrito> nuevo = new ArrayList();
                 boolean band = false;
-                Carrito ca = new Carrito();
                 for (Carrito c : list){
-                    if (idLib!=c.getIdLibro()) {
-                        //band=true;
-                        //ca = c;
-                        list.remove(c);
-                        
-                    } else{
-                       // band = false;
-                       // ca = new Carrito();
+                    if (idLib != c.getIdLibro()) {
+                        Carrito ca = new Carrito();
+                        ca.setAutor(c.getAutor());
+                        ca.setCantidad(c.getCantidad());
+                        ca.setEditorial(c.getEditorial());
+                        ca.setIdCliente(c.getIdCliente());
+                        ca.setIdLibro(c.getIdLibro());
+                        ca.setNombre(c.getNombre());
+                        ca.setPrecio(c.getPrecio());
+                        ca.setSubtotal(c.getSubtotal());
+                        nuevo.add(ca);
+                        band=false;
+                    }else{
+                        band = true;
                     }
-                    if(band){
-                        /*list.remove(ca);
-                        ses.setAttribute("carrito", list);
-                        out.print("Se elimininó satisfactoriamente");*/
+                }
+                if(band){
+                    out.print("Se eliminó correctamente ");
+                }
+                ses.setAttribute("carrito", nuevo);    
+        }
+        
+        if(accion.equals("update")){
+            int idLi = Integer.parseInt(request.getParameter("idLibro"));
+            int canti = Integer.parseInt(request.getParameter("cant"));
+            List<Carrito> list = (ArrayList) ses.getAttribute("carrito");
+                for (Carrito c : list){
+                    if (idLi == c.getIdLibro()) {
+                        c.setCantidad(c.getCantidad()<canti? c.getCantidad()+1: c.getCantidad()-1);
+                        c.setSubtotal(c.getCantidad()*c.getPrecio());
                     }
                 }
                 ses.setAttribute("carrito", list);
-                out.print("Se elimininó satisfactoriamente");
-            
         }
         
 
