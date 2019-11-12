@@ -125,4 +125,32 @@ public class DaoCliente extends Conexion{
         return mather.find();
 
     }
+      
+      public List<Cliente> listarCliente(int idCliente){
+          ResultSet rs;
+          List<Cliente> ls = new ArrayList();
+          try {
+              conectar();
+              String sql = "SELECT c.idCliente, c.nombre, c.apellido, "
+                      + "c.direccion , p.nombre AS pais, p.idPais "
+                      + "FROM cliente c JOIN pais p ON c.idPais=p.idPais "
+                      + "WHERE c.borradoLogico=1 AND c.idCliente=?";
+              PreparedStatement pre = this.getCon().prepareStatement(sql);
+              pre.setInt(1, idCliente);
+              rs = pre.executeQuery();
+              while(rs.next()){
+                  Cliente c = new Cliente();
+                  c.setIdCliente(rs.getInt("idCliente"));
+                  c.setNombre(rs.getString("nombre"));
+                  c.setApellido(rs.getString("apellido"));
+                  c.setDireccion(rs.getString("direccion"));
+                  c.setPais(rs.getInt(rs.getInt("idPais")));
+                  ls.add(c);
+              }
+              pre.close();
+              rs.close();
+          } catch (Exception e) {
+          }
+          return ls;
+      }
 }
