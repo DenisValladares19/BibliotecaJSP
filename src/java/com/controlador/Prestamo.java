@@ -45,9 +45,19 @@ public class Prestamo extends HttpServlet {
                     }
                     else
                     {
+                        int n= dao.nPrestamos(idClie);
+                        
+                        if(n>3)
+                        {
+                        request.setAttribute("info","Exediste el Numero de Libro a Prestar");
+                        request.setAttribute("type","error");
+                        }
+                        else
+                        {
                         dao.insertarSoliPrestamo(idClie, idLib);
                         request.setAttribute("info","Solicitud Exitosa");
                         request.setAttribute("type","success");
+                        }
                     }
                 }
             }
