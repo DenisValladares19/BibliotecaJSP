@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.controlador;
 
 import com.dao.DaoPrestamo;
@@ -16,10 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author ADMIN
+ * Nombre del Servlet: Prestamos
+ * Fecha: 01-10-2019
+ * Version: 1.0
+ * Copyright: Biblioteca Online
+ * @author Edgard Palacios 
  */
-public class Prestamo extends HttpServlet {
+
+public class Prestamos extends HttpServlet {
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

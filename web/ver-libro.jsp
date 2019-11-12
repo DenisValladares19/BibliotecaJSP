@@ -102,7 +102,7 @@
 
                               %>
                             <div class="col-md-4">
-                                <a href="prestamo?u=<%= id %>&l=<%= idL %>" class="btn btn-warning btn-small" style="color:white;" id="prestar"><i class="fas fa-id-badge"></i>  Prestar</a>                               
+                                <a href="prestamos?u=<%= id %>&l=<%= idL %>" class="btn btn-warning btn-small" style="color:white;" id="prestar"><i class="fas fa-id-badge"></i>  Prestar</a>                               
                             </div>
                             
                              <%
