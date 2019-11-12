@@ -70,7 +70,7 @@
                 %>
                 
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a  href="notificaciones.jsp" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="icon-globe icon-1x"></i><span class="badge badge-info"><div id="noti"></div></span></a>
+                    <a  href="notificaciones.jsp" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fas fa-globe-americas mr-1"></i><span class="badge badge-info"><div id="noti"></div></span></a>
                      <ul class="dropdown-menu">
                          <%                         
                               for(Notificacion no:list){
