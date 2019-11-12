@@ -3,22 +3,25 @@ $(document).ready(function(){
         var idLibro = $(this).attr("id");
         var accion = "eliminar";
         
-        $.post("carro",{
-            idLibro,
-            accion
-        },function (res) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-            Toast.fire({
-                icon: 'success',
-                title: res
-            });
-            
-        });
+        window.setInterval(
+           $.post("carro",{
+                idLibro,
+                accion
+            },function (res) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                Toast.fire({
+                    icon: 'success',
+                    title: res
+                });
+
+            }),
+            "2000"
+        );
         $(this).closest('tr').remove(); 
         location.reload();
     });
