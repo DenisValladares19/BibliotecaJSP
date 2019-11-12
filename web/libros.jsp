@@ -7,6 +7,7 @@
 <%@page import="com.modelo.Libro"%>
 <%@page import="java.util.List"%>
 <%@page import="com.dao.DaoLibro"%>
+<%@page session="true" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
