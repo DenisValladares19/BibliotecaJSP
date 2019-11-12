@@ -8,6 +8,8 @@ $(document).ready(function() {
                     'error'
                  )
            }else{
+                $("#modalTipoLibro").modal("show");
+               /*
                 var idLibro = $("#idLibro").val();
                 var cant = $("#cant").val();
                 var accion = "agregar";
@@ -31,7 +33,7 @@ $(document).ready(function() {
                           location.reload();
                     }),"2000"    
                 );
-                $("#cant").val(1);
+                $("#cant").val(1);*/
            }
             
        });
