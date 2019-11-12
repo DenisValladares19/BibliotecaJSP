@@ -17,11 +17,12 @@ public class Carrito {
     private double precio;
     private double subtotal;
     private int idCliente;
+    private int stock;
 
     public Carrito() {
     }
 
-    public Carrito(int idLibro, String nombre, String editorial, String autor, int cantidad, double precio, double subtotal, int idCliente) {
+    public Carrito(int idLibro, String nombre, String editorial, String autor, int cantidad, double precio, double subtotal, int idCliente, int stock) {
         this.idLibro = idLibro;
         this.nombre = nombre;
         this.editorial = editorial;
@@ -30,6 +31,7 @@ public class Carrito {
         this.precio = precio;
         this.subtotal = subtotal;
         this.idCliente = idCliente;
+        this.stock = stock;
     }
 
     public int getIdLibro() {
@@ -94,5 +96,15 @@ public class Carrito {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-    }   
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    
 }
