@@ -31,7 +31,7 @@
  %>
  
  
- <%
+        <%
             if(request.getAttribute("info")!=null)
             {
          %>

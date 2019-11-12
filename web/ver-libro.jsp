@@ -1,4 +1,7 @@
 
+
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.modelo.Libro"%>
 <%
     if(request.getParameter("l")!=null){
@@ -30,6 +33,32 @@
       DaoLibro daoL = new DaoLibro();
       HttpSession ses=request.getSession();
   %>
+  
+  
+  <%
+            if(request.getAttribute("info")!=null)
+            {
+         %>
+         <script>
+           $(document).ready(function(e)
+             {
+               const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+              })
+
+              Toast.fire({
+                type: '<%= request.getAttribute("type") %>',
+                title: '<%= request.getAttribute("info") %>'
+              })
+             });
+         </script>
+         
+         <%
+             }
+          %>
 </head>
 
 <body>
@@ -69,6 +98,7 @@
                                 if(ses.getAttribute("sis")!=null)  //Esta sesion trae el ID del Usuario logeado
                                   {
                                int id=Integer.parseInt(ses.getAttribute("sis").toString()); 
+                                
 
                               %>
                             <div class="col-md-4">

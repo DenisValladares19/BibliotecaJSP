@@ -8,7 +8,6 @@ package com.controlador;
 import com.dao.DaoPrestamo;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,24 +40,26 @@ public class Prestamo extends HttpServlet {
                 {
                     if(dao.validar(idClie, idLib))
                     {
-                        request.setAttribute("info","Ya eienes una Solicitud del Prestamo Vigente");
+                        request.setAttribute("info","Ya Tienes una Solicitud del Prestamo Vigente");
                         request.setAttribute("type","error");
                     }
                     else
                     {
-                        //Solo para hacer el Commit
-                       // Date fecha=new Date();
-                        SimpleDateFormat formato=new SimpleDateFormat("dd/MM/YY");
-                        
                         dao.insertarSoliPrestamo(idClie, idLib);
+                        request.setAttribute("info","Solicitud Exitosa");
+                        request.setAttribute("type","success");
                     }
                 }
             }
+            
+            rd=request.getRequestDispatcher("ver-libro.jsp");
         } 
         catch (Exception e) 
         {
-            
+            request.setAttribute("Error",e.toString());
         }
+        rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -2,10 +2,12 @@
 package com.dao;
 
 import com.conexion.Conexion;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Nombre de la clase: DaoPrestamo
@@ -45,15 +47,18 @@ public class DaoPrestamo extends Conexion{
     //En este Metodo se Ingresa la Solicitud del Prestamo
     public void insertarSoliPrestamo(int idClie,int idLib) throws ClassNotFoundException, SQLException, Exception
     {
-        //Date fecha=new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date fecha = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(fecha.getTime());
         try 
         {
             this.conectar();
-            String sql="insert into solicitudprestamo(idCliente,idLibro,fecha)value(?,?,?)";
+            String sql="insert into solicitudprestamo(idCliente,idLibro,fecha,borradoLogico) values(?,?,?,?)";
             PreparedStatement pre=this.getCon().prepareStatement(sql);
-            pre.setInt(1,idClie);
+            pre.setInt(1, idClie);
             pre.setInt(2, idLib);
-           // pre.setDate(3, fecha);
+            pre.setDate(3, sqlDate);
+            pre.setInt(4, 1);
             pre.executeUpdate();  
             
             
