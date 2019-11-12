@@ -39,6 +39,18 @@ $(document).ready(function(){
                cant,
                accion
             },function(res){
+                if(res!==""){
+                   const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    Toast.fire({
+                        icon: 'error',
+                        title: res
+                    }); 
+                }
                 location.reload();
             });
        }
