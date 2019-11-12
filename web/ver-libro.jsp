@@ -1,5 +1,6 @@
 
 
+<%@page import="com.dao.DaoLibro"%>
 <%@page import="com.modelo.Cliente"%>
 <%@page import="com.dao.DaoCliente"%>
 <%@page import="java.util.Date"%>
