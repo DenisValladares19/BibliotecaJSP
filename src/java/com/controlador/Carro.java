@@ -49,28 +49,38 @@ public class Carro extends HttpServlet {
         if(accion.equals("agregar")){
             int cantidad = Integer.parseInt(request.getParameter("cant"));
             List<Carrito> car = (ArrayList)ses.getAttribute("carrito");
+            boolean flag = false;
             if(car==null || car.isEmpty()){
                     try {
                        ls = dao.verLibro(idLibro);
                        for(Libro l:ls){
-                           Carrito c = new Carrito();
-                           c.setIdLibro(idLibro);
-                           c.setNombre(l.getNombre());
-                           c.setAutor(l.getAutor().getNombre());
-                           c.setEditorial(l.getEditorial().getNombre());
-                           c.setPrecio(l.getPrecio());
-                           c.setCantidad(cantidad);
-                           c.setSubtotal(cantidad*l.getPrecio());
-                           arreglo.add(c);
+                           if(cantidad<=l.getCantidad()){
+                                Carrito c = new Carrito();
+                                c.setIdLibro(idLibro);
+                                c.setNombre(l.getNombre());
+                                c.setAutor(l.getAutor().getNombre());
+                                c.setEditorial(l.getEditorial().getNombre());
+                                c.setPrecio(l.getPrecio());
+                                c.setCantidad(cantidad);
+                                c.setSubtotal(cantidad*l.getPrecio());
+                                c.setStock(l.getCantidad());
+                                arreglo.add(c);
+                                flag = true;
+                           }else{
+                               out.print("No hay mas libros en Stock");
+                               flag = false;
+                           }
                        }
                        ses.setAttribute("carrito", arreglo);
+                       if(flag){
                        out.print("Se agregó exitosamente al carrito");
+                       }
                     } catch (Exception e) {
                         out.print("Error: "+e.getMessage());
                     }
                } else {
                 List<Carrito> list = (ArrayList) ses.getAttribute("carrito");
-                boolean band = false;
+                boolean band= false;
                 for (Carrito c : list){
                     if (idLibro!=c.getIdLibro()) {
                         band=true;
@@ -84,7 +94,9 @@ public class Carro extends HttpServlet {
                     try {
                             List<Libro> lst = new ArrayList();
                             lst = dao.verLibro(idLibro);
+                            boolean b = false;
                             for (Libro l : lst) {
+                                if(cantidad>=l.getCantidad()){
                                 Carrito ca = new Carrito();
                                 ca.setIdLibro(l.getIdLibro());
                                 ca.setNombre(l.getNombre());
@@ -93,9 +105,16 @@ public class Carro extends HttpServlet {
                                 ca.setPrecio(l.getPrecio());
                                 ca.setCantidad(cantidad);
                                 ca.setSubtotal(cantidad * l.getPrecio());
+                                ca.setStock(l.getCantidad());
                                 list.add(ca);
-                                out.print("Se agregó otro exitosamente al carrito");
                                 ses.setAttribute("carrito", list);
+                                b = true;
+                                }else{
+                                    out.print("No hay mas libros en Stock");
+                                }
+                                if(b){
+                                    out.print("Se agregó otro exitosamente al carrito");
+                                }
                             }
                             
                         } catch (Exception e) {
@@ -139,8 +158,12 @@ public class Carro extends HttpServlet {
             List<Carrito> list = (ArrayList) ses.getAttribute("carrito");
                 for (Carrito c : list){
                     if (idLi == c.getIdLibro()) {
+                        if(canti<=c.getStock()){
                         c.setCantidad(c.getCantidad()<canti? c.getCantidad()+1: c.getCantidad()-1);
                         c.setSubtotal(c.getCantidad()*c.getPrecio());
+                        }else{
+                            out.print("No hay mas libros en stock");
+                        }
                     }
                 }
                 ses.setAttribute("carrito", list);
