@@ -69,6 +69,10 @@
             </tr>
         </tfoot>
     </table>
+    <div class="" align="right">
+        <a href="finalizarCompra.jsp" class="btn btn-success" style="color:white;">Finalizar Compra</a>
+    </div>
+    
             <%
                 }else{
                 %> 
