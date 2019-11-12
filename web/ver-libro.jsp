@@ -87,6 +87,7 @@
                         <h5><strong>Editorial: </strong><%= l.getEditorial().getNombre() %></h5>
                         <h5><strong>Edición: </strong><%= l.getEdicion() %></h5>
                         <h5><strong>Precio: </strong>$ <%= l.getPrecio() %></h5>
+                        <h5><strong>Tipo de Libro: </strong><%= l.getTipoLibro().getTipo() %></h5>
                         <input type="hidden" id="tipoLibro" value="<%=l.getTipoLibro().getIdTipoLibro() %>"/>
                         <input type="hidden" id="idLibro" value="<%= request.getParameter("l") %>"/>
                         <div class="row">
