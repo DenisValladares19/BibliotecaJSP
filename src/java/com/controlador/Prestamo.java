@@ -45,6 +45,8 @@ public class Prestamo extends HttpServlet {
                     }
                     else
                     {
+                        
+                        //Cometario Falso xd
                         int n= dao.nPrestamos(idClie);
                         
                         if(n>3)
