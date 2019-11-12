@@ -48,17 +48,17 @@
                        x++;
                    }
         %>
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info"><%=x%></span></i></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"style="text-decoration: none; color: white;"  href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info"><%=x%></span></i></a>
           <%
                 }else{
                 %>
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info">0</span></i></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"  style="text-decoration: none; color: white;"  href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info">0</span></i></a>
               <%
                 }
         }else{
         %>
           
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info">0</span></i></a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" style="text-decoration: none; color: white;"  href="carrito.jsp"><i class="fas fa-shopping-cart mr-1"></i><span class="badge badge-info">0</span></i></a>
           </li>   
                 <%
                     }
@@ -70,7 +70,7 @@
                 %>
                 
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a  href="notificaciones.jsp" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fas fa-globe-americas mr-1"></i><span class="badge badge-info"><div id="noti"></div></span></a>
+                    <a  href="notificaciones.jsp" style="text-decoration: none; color: white;"  class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fas fa-globe-americas mr-1"></i><span class="badge badge-info"><div id="noti"></div></span></a>
                      <ul class="dropdown-menu">
                          <%                         
                               for(Notificacion no:list){
