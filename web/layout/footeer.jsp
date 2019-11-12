@@ -6,7 +6,7 @@
   <div class="footer-copyright text-center py-3">
       <img src="assets/img/Imagen1.png"width="230px" height="40px"/>
   </div>
-  <div class="footer-copyright text-center py-3" style="color: white">
+  <div class="footer-copyright text-center py-3">
       &copy; Biblioteca Online 2019
   </div>
   <!-- Copyright -->
