@@ -1,5 +1,7 @@
 
 
+<%@page import="com.modelo.Cliente"%>
+<%@page import="com.dao.DaoCliente"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.modelo.Libro"%>
@@ -13,7 +15,6 @@
     Created on : 10-03-2019, 10:15:08 PM
     Author     : Admin
 --%>
-<%@page import="com.dao.DaoLibro"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true" %>
@@ -85,6 +86,7 @@
                         <h5><strong>Editorial: </strong><%= l.getEditorial().getNombre() %></h5>
                         <h5><strong>Edición: </strong><%= l.getEdicion() %></h5>
                         <h5><strong>Precio: </strong>$ <%= l.getPrecio() %></h5>
+                        <input type="hidden" id="tipoLibro" value="<%=l.getTipoLibro().getIdTipoLibro() %>"/>
                         <input type="hidden" id="idLibro" value="<%= request.getParameter("l") %>"/>
                         <div class="row">
                             <div class="col-md-3">
@@ -127,9 +129,36 @@
          
         
     </div>
-    <jsp:include page="layout/footeer.jsp"></jsp:include>
+    
 </body>
 </html>
+<jsp:include page="layout/footeer.jsp"></jsp:include>
+<!-- Modal -->
+<div class="modal fade" id="modalTipoLibro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Biblioteca Online</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+              <p class="text-center">Seleccione el tipo de libro</p><br>
+              <div class="col-md-6">
+                 
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <%
     }else{
 
