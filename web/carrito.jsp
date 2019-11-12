@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.modelo.Carrito"%>
 <%@page import="java.util.ArrayList"%>
+<%@page session="true" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
