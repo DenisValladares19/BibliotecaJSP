@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@page import="java.util.Date"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.modelo.Carrito"%>
 <%@page import="java.util.ArrayList"%>
@@ -32,7 +33,7 @@
     <br>
     <div class="container">
         <center><h3>Finalizar compra</h3></center>
-        <form action="procesarPago" method="post">
+        <form method="post">
             <div class="row mt-5">
                 <div class="col-md-2"></div>
                 <div class="col-md-4">
@@ -44,12 +45,12 @@
                     %>
                     
                     <label class="label">Nombre</label>
-                    <input name="nombre" value="<%=c.getNombre() %>"  class="form-control" required="true"/>
+                    <input id="nombre" value="<%=c.getNombre() %>"  class="form-control" required="true"/>
                     <label class="label">Apellido</label>
-                    <input name="apellido" value="<%=c.getApellido() %>"  class="form-control" required="true"/>
+                    <input id="apellido" value="<%=c.getApellido() %>"  class="form-control" required="true"/>
                     <label class="label">Dirección</label>
-                    <input name="direccion" value="<%=c.getDireccion() %>"  class="form-control"required="true"/>
-                    <input type="hidden" name="idCliente" value="<%=c.getIdCliente() %>"/>
+                    <input id="direccion" value="<%=c.getDireccion() %>"  class="form-control"required="true"/>
+                    <input type="hidden" id="idCliente" value="<%=c.getIdCliente() %>"/>
                     <%
                         }
                     %>
@@ -82,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <label>Total a pagar  </label>
+                    <label>Total a pagar $ </label>
                     <%
                         List<Carrito> lis = (ArrayList)ses.getAttribute("carrito");
                         double total=0;
@@ -91,7 +92,7 @@
                             total+=l.getSubtotal();
                         }
                     %>
-                    <input type="text" name="total" value="<%= df.format(total) %>" class="form-control" readonly="true"/>
+                    <input type="text" id="total" value="<%= df.format(total) %>" class="form-control" readonly="true"/>
                     <div align="right"><br>
                         <input type="submit" class="btn btn-success" id="enviar" value="Proceder con el pago" style="color:white;" />
                    </div>
