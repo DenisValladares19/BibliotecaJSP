@@ -294,7 +294,6 @@ fecha date,
 cantidad int,
 totalPagar float,
 idDetalleEnvio int,
-idEstadoVenta int,
 borradoLogico int,
 primary key(idVenta));
 
