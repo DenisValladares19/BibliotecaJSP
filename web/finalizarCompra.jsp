@@ -25,6 +25,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Biblioteca Onile</title>
         <jsp:include page="layout/css1.jsp"></jsp:include>
+        <script src="Recursos/js/finalizarCompra.js" type="text/javascript"></script>
     </head>
     <body>
     <jsp:include  page="layout/menu_pagep.jsp"></jsp:include>
@@ -81,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <label>Total a pagar </label>
+                    <label>Total a pagar  </label>
                     <%
                         List<Carrito> lis = (ArrayList)ses.getAttribute("carrito");
                         double total=0;
@@ -90,9 +91,9 @@
                             total+=l.getSubtotal();
                         }
                     %>
-                    <input type="text" name="total" value="$ <%= total%>" class="form-control" readonly="true"/>
+                    <input type="text" name="total" value="<%= df.format(total) %>" class="form-control" readonly="true"/>
                     <div align="right"><br>
-                        <input type="submit" class="btn btn-success" value="Proceder con el pago" style="color:white;" />
+                        <input type="submit" class="btn btn-success" id="enviar" value="Proceder con el pago" style="color:white;" />
                    </div>
                 </div>
             </div>

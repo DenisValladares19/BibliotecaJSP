@@ -13,11 +13,12 @@ public class Venta {
     private int cantidad;
     private double totalPagar;
     private DetalleEnvio detalleEnvio;
+    private Envio envio;
 
     public Venta() {
     }
 
-    public Venta(int idVenta, Cliente cliente, Libro libro, String fecha, int cantidad, double totalPagar, DetalleEnvio detalleEnvio) {
+    public Venta(int idVenta, Cliente cliente, Libro libro, String fecha, int cantidad, double totalPagar, DetalleEnvio detalleEnvio, Envio envio) {
         this.idVenta = idVenta;
         this.cliente = cliente;
         this.libro = libro;
@@ -25,6 +26,7 @@ public class Venta {
         this.cantidad = cantidad;
         this.totalPagar = totalPagar;
         this.detalleEnvio = detalleEnvio;
+        this.envio = envio;
     }
 
     public int getIdVenta() {
@@ -82,6 +84,14 @@ public class Venta {
     public void setDetalleEnvio(DetalleEnvio detalleEnvio) {
         this.detalleEnvio = detalleEnvio;
     }
-    
+
+    public Envio getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(Envio envio) {
+        this.envio = envio;
+    }
+
     
 }

@@ -6,6 +6,8 @@ import com.modelo.Envio;
 import com.modelo.Venta;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -14,13 +16,13 @@ import java.sql.ResultSet;
 public class DaoVenta extends Conexion {
     
     
-    public void insertarVenta(Envio en){
+    public void insertarVenta(Venta v) throws Exception{
         try {
             conectar();
             String sql = "INSERT INTO `envio`(`costoEnvio`, `destino`, `borradoLogico`) VALUES (?,?,1)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setDouble(1, en.getCostoEnvio());
-            pre.setString(2, en.getDestino());
+            pre.setDouble(1, v.getEnvio().getCostoEnvio());
+            pre.setString(2, v.getEnvio().getDestino());
             pre.executeUpdate();
             pre.close();
             
@@ -28,8 +30,8 @@ public class DaoVenta extends Conexion {
             ResultSet rs;
             int idEnvio = 0;
             PreparedStatement pre2 = this.getCon().prepareStatement(sql2);
-            pre.setDouble(1, en.getCostoEnvio());
-            pre.setString(2, en.getDestino());
+            pre2.setDouble(1, v.getEnvio().getCostoEnvio());
+            pre2.setString(2, v.getEnvio().getDestino());
             rs = pre2.executeQuery();
             while(rs.next()){
                 idEnvio = rs.getInt("idEnvio");
@@ -59,9 +61,19 @@ public class DaoVenta extends Conexion {
             
             String sql5 = "INSERT INTO `venta`(`idCliente`, `idLibro`, `fecha`, `cantidad`, `totalPagar`, `idDetalleEnvio`, `borradoLogico`) VALUES (?,?,?,?,?,?,1)";
             PreparedStatement pre5 = this.getCon().prepareStatement(sql5);
-            
-            
+            pre5.setInt(1,v.getCliente().getIdCliente() );
+            pre5.setInt(2, v.getLibro().getIdLibro());
+            pre5.setString(3, v.getFecha());
+            pre5.setInt(4, v.getCantidad());
+            pre5.setDouble(5, v.getTotalPagar());
+            pre5.setInt(6, idDetalleEnvio);
+            pre5.executeUpdate();
+            pre5.close();
+                
         } catch (Exception e) {
+            throw e;
+        }finally{
+            desconectar();
         }
     }
 }
