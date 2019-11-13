@@ -42,6 +42,7 @@ public class Carro extends HttpServlet {
         PrintWriter out = response.getWriter();
         int idLibro = Integer.parseInt(request.getParameter("idLibro"));
         String accion = request.getParameter("accion");
+        
         HttpSession ses = request.getSession();
         DaoLibro dao = new DaoLibro();
         List<Libro> ls;
@@ -53,6 +54,8 @@ public class Carro extends HttpServlet {
             if(car==null || car.isEmpty()){
                     try {
                        ls = dao.verLibro(idLibro);
+                       boolean digital = Boolean.parseBoolean(request.getParameter("libroDigital"));
+                       boolean fisico = Boolean.parseBoolean(request.getParameter("libroFisico"));
                        for(Libro l:ls){
                            if(cantidad<=l.getCantidad()){
                                 Carrito c = new Carrito();
@@ -64,6 +67,8 @@ public class Carro extends HttpServlet {
                                 c.setCantidad(cantidad);
                                 c.setSubtotal(cantidad*l.getPrecio());
                                 c.setStock(l.getCantidad());
+                                c.setDigital(digital);
+                                c.setFisico(fisico);
                                 arreglo.add(c);
                                 flag = true;
                            }else{
@@ -87,39 +92,48 @@ public class Carro extends HttpServlet {
                     } else {
                         band=false;
                         c.setCantidad(c.getCantidad()+cantidad);
+                        if(!c.isDigital()){
+                            c.setDigital(true);
+                        }
+                        if(!c.isFisico()){
+                            c.setFisico(true);
+                        }
                         out.print("Se agregó de nuevo el libro");
                     }
                 }
                 if(band){
                     try {
-                            List<Libro> lst = new ArrayList();
-                            lst = dao.verLibro(idLibro);
-                            boolean b = false;
-                            for (Libro l : lst) {
-                                if(cantidad>=l.getCantidad()){
-                                Carrito ca = new Carrito();
-                                ca.setIdLibro(l.getIdLibro());
-                                ca.setNombre(l.getNombre());
-                                ca.setAutor(l.getAutor().getNombre());
-                                ca.setEditorial(l.getEditorial().getNombre());
-                                ca.setPrecio(l.getPrecio());
-                                ca.setCantidad(cantidad);
-                                ca.setSubtotal(cantidad * l.getPrecio());
-                                ca.setStock(l.getCantidad());
-                                list.add(ca);
-                                ses.setAttribute("carrito", list);
-                                b = true;
-                                }else{
-                                    out.print("No hay mas libros en Stock");
-                                }
-                                if(b){
-                                    out.print("Se agregó otro exitosamente al carrito");
-                                }
-                            }
-                            
-                        } catch (Exception e) {
-                            out.print("Error: " + e.getMessage());
-                        }
+                       List<Libro> lst = new ArrayList();
+                       lst = dao.verLibro(idLibro);
+                       boolean digital = Boolean.parseBoolean(request.getParameter("libroDigital"));
+                       boolean fisico = Boolean.parseBoolean(request.getParameter("libroFisico"));
+                       for(Libro l:lst){
+                           if(cantidad<=l.getCantidad()){
+                                Carrito c = new Carrito();
+                                c.setIdLibro(idLibro);
+                                c.setNombre(l.getNombre());
+                                c.setAutor(l.getAutor().getNombre());
+                                c.setEditorial(l.getEditorial().getNombre());
+                                c.setPrecio(l.getPrecio());
+                                c.setCantidad(cantidad);
+                                c.setSubtotal(cantidad*l.getPrecio());
+                                c.setStock(l.getCantidad());
+                                c.setDigital(digital);
+                                c.setFisico(fisico);
+                                list.add(c);
+                                flag = true;
+                           }else{
+                               out.print("No hay mas libros en Stock");
+                               flag = false;
+                           }
+                       }
+                       ses.setAttribute("carrito", list);
+                       if(flag){
+                       out.print("Se agregó otro exitosamente al carrito");
+                       }
+                    } catch (Exception e) {
+                        out.print("Error: "+e.getMessage());
+                    }
                 }
             }
 
@@ -140,6 +154,8 @@ public class Carro extends HttpServlet {
                         ca.setNombre(c.getNombre());
                         ca.setPrecio(c.getPrecio());
                         ca.setSubtotal(c.getSubtotal());
+                        //ca.setDigital(c.isDigital());
+                        //ca.setFisico(c.isFisico());
                         nuevo.add(ca);
                         band=false;
                     }else{
