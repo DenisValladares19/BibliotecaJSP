@@ -87,7 +87,6 @@
                         <h5><strong>Editorial: </strong><%= l.getEditorial().getNombre() %></h5>
                         <h5><strong>Edición: </strong><%= l.getEdicion() %></h5>
                         <h5><strong>Precio: </strong>$ <%= l.getPrecio() %></h5>
-                        <h5><strong>Tipo de Libro: </strong><%= l.getTipoLibro().getTipo() %></h5>
                         <input type="hidden" id="tipoLibro" value="<%=l.getTipoLibro().getIdTipoLibro() %>"/>
                         <input type="hidden" id="idLibro" value="<%= request.getParameter("l") %>"/>
                         <div class="row">
@@ -147,15 +146,24 @@
       </div>
       <div class="modal-body">
           <div class="row">
-              <p class="text-center">Seleccione el tipo de libro</p><br>
+              <div class="col-md-4">
+                  <p class="text-center">Tipo Libro: </p>
+              </div>
               <div class="col-md-6">
-                 
+                      <%
+                          List<Libro> list = daoL.listarTipo();
+                          for(Libro l:list){
+                      %>
+                      <label class="form-check-label"><input type="checkbox" class="form-check-input" id="<%=l.getTipoLibro().getIdTipoLibro() %>" name="chTipoLibro" value="<%=l.getTipoLibro().getTipo() %>"/> <%=l.getTipoLibro().getTipo() %></label><br>
+                      <%
+                        }
+                      %>
               </div>
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-outline-success" id="modalGuardar">Guardar</button>
       </div>
     </div>
   </div>
