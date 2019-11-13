@@ -9,6 +9,7 @@ import com.modelo.Libro;
 import com.modelo.TipoLibro;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -268,5 +269,29 @@ public class DaoLibro extends Conexion {
         }
         return ls;
     }
+     
+     public List<Libro> listarTipo() throws  Exception{
+         ResultSet rs;
+         List<Libro> ls = new ArrayList();
+         try {
+             conectar();
+             String sql = "SELECT * FROM tipolibro";
+             PreparedStatement pre = this.getCon().prepareStatement(sql);
+             rs = pre.executeQuery();
+             while(rs.next()){
+                 TipoLibro tl = new TipoLibro();
+                 tl.setIdTipoLibro(rs.getInt("idTipoLibro"));
+                 tl.setTipo(rs.getString("tipo"));
+                 Libro l = new Libro();
+                 l.setTipoLibro(tl);
+                 ls.add(l);
+             }
+         } catch (SQLException | ClassNotFoundException e) {
+             throw e;
+         }finally{
+             desconectar();
+         }
+         return ls;
+     }
     
 }
