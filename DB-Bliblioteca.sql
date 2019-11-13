@@ -311,7 +311,6 @@ insert into envio values (2,"5.99","San miguel",1);
 create table detalleEnvio(
 idDetalleEnvio int not null auto_increment,
 idEnvio int,
-idCompra int,
 idEstadoEnvio int,
 tiempoEnvio varchar(15),
 borradoLogico int,
@@ -505,7 +504,6 @@ alter table penalizacion add constraint fkPenalizacionPrestamo foreign key(idPre
 alter table cliente add constraint fkClienteUsuario foreign key(idUsuario) references usuarios(id)  on update cascade on delete no action;
 alter table empleado add constraint fkEmpleadoUsuario foreign key(idUsuario) references usuarios(id);
 alter table cliente add constraint fkClientePais foreign key(idPais) references pais(idPais) on update cascade on delete no action;
-alter table detalleEnvio add constraint fkDetalleEnvioCompra foreign key(idCompra) references compra(idCompra) on update cascade on delete no action;
 alter table detalleEnvio add constraint fkDetalleEnvioEnvio foreign key(idEnvio) references envio(idEnvio) on update cascade on delete no action;
 alter table detalleEnvio add constraint fkDetalleEnvioEstadoEnvio foreign key(idEstadoEnvio) references estadoEnvio(idEstadoEnvio) on update cascade on delete no action;
 alter table compra add constraint fkCompraEmpleado foreign key(idEmpleado) references empleado(idEmpleado) on update cascade on delete no action;
