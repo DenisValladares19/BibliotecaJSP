@@ -126,15 +126,12 @@ public class DaoCliente extends Conexion{
 
     }
       
-      public List<Cliente> listarCliente(int idCliente){
+      public List<Cliente> listarCliente(int idCliente) throws Exception{
           ResultSet rs;
           List<Cliente> ls = new ArrayList();
           try {
               conectar();
-              String sql = "SELECT c.idCliente, c.nombre, c.apellido, "
-                      + "c.direccion , p.nombre AS pais, p.idPais "
-                      + "FROM cliente c JOIN pais p ON c.idPais=p.idPais "
-                      + "WHERE c.borradoLogico=1 AND c.idCliente=?";
+              String sql = "SELECT * FROM cliente WHERE cliente.idUsuario=?";
               PreparedStatement pre = this.getCon().prepareStatement(sql);
               pre.setInt(1, idCliente);
               rs = pre.executeQuery();
@@ -144,12 +141,13 @@ public class DaoCliente extends Conexion{
                   c.setNombre(rs.getString("nombre"));
                   c.setApellido(rs.getString("apellido"));
                   c.setDireccion(rs.getString("direccion"));
-                  c.setPais(rs.getInt(rs.getInt("idPais")));
+                  c.setPais(rs.getInt("idPais"));
                   ls.add(c);
               }
-              pre.close();
-              rs.close();
           } catch (Exception e) {
+              throw e;
+          }finally{
+              desconectar();
           }
           return ls;
       }

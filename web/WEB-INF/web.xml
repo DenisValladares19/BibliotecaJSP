@@ -41,6 +41,10 @@
         <servlet-name>Prestamos</servlet-name>
         <servlet-class>com.controlador.Prestamos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcesarPago</servlet-name>
+        <servlet-class>com.controlador.ProcesarPago</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -80,6 +84,10 @@
     <servlet-mapping>
         <servlet-name>Prestamos</servlet-name>
         <url-pattern>/prestamos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcesarPago</servlet-name>
+        <url-pattern>/procesarPago</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
