@@ -18,12 +18,13 @@ public class Carrito {
     private double subtotal;
     private int idCliente;
     private int stock;
-    private int tipoLibro;
+    private boolean fisico;
+    private boolean digital;
 
     public Carrito() {
     }
 
-    public Carrito(int idLibro, String nombre, String editorial, String autor, int cantidad, double precio, double subtotal, int idCliente, int stock, int tipoLibro) {
+    public Carrito(int idLibro, String nombre, String editorial, String autor, int cantidad, double precio, double subtotal, int idCliente, int stock, boolean fisico, boolean digital) {
         this.idLibro = idLibro;
         this.nombre = nombre;
         this.editorial = editorial;
@@ -33,7 +34,8 @@ public class Carrito {
         this.subtotal = subtotal;
         this.idCliente = idCliente;
         this.stock = stock;
-        this.tipoLibro = tipoLibro;
+        this.fisico = fisico;
+        this.digital = digital;
     }
 
     public int getIdLibro() {
@@ -108,11 +110,19 @@ public class Carrito {
         this.stock = stock;
     }
 
-    public int getTipoLibro() {
-        return tipoLibro;
+    public boolean isFisico() {
+        return fisico;
     }
 
-    public void setTipoLibro(int tipoLibro) {
-        this.tipoLibro = tipoLibro;
+    public void setFisico(boolean fisico) {
+        this.fisico = fisico;
+    }
+
+    public boolean isDigital() {
+        return digital;
+    }
+
+    public void setDigital(boolean digital) {
+        this.digital = digital;
     }
 }
